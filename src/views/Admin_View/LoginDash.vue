@@ -7,22 +7,24 @@ const loginForm = reactive({
   user: "",
   password: "",
 });
+const onSubmit = () => {
+  console.log("submit");
+};
 </script>
 
 <template>
   <div
-    class="h-screen w-screen bg-[var(--color-merah)] items-center flex justify-center"
+    class="h-screen w-screen bg-[var(--color-merah)] items-center flex justify-center overflow-hidden"
   >
     <div>
-      <div class="flex justify-center">
+      <div class="flex justify-center pb-5">
         <img src="@/assets/images/logo-nobg.png" alt="" class="w-[27vh]" />
       </div>
-      <div
-        class="w-[50vh] bg-[var(--color-sand)] rounded-xl tulisan pt-4 text-2xl"
-      >
-        <div class="flex justify-center pt-3">Admin Login</div>
+      <div class="w-[370px] bg-[var(--color-sand)] rounded-xl pt-4">
+        <div class="flex justify-center pt-3 text-2xl tulisan">Admin Login</div>
         <div class="p-6" id="label">
           <el-form
+            id="login"
             size="large"
             ref="loginFormRef"
             :model="loginForm"
@@ -32,8 +34,15 @@ const loginForm = reactive({
               <el-input v-model="loginForm.user" />
             </el-form-item>
             <el-form-item label="Password">
-              <el-input v-model="loginForm.password" />
+              <el-input
+                v-model="loginForm.password"
+                type="password"
+                show-password
+              />
             </el-form-item>
+            <div class="flex justify-center">
+              <el-button @click="onSubmit">Login</el-button>
+            </div>
           </el-form>
         </div>
       </div>

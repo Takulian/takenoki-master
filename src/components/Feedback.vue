@@ -12,9 +12,18 @@ const addMenu = reactive({
   pesan: "",
 });
 
-const onSubmit = () => {
-  console.log("submit");
+const onSubmit = (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
+  formEl.validate((valid) => {
+    if (valid) {
+      console.log("submit!");
+    } else {
+      console.log("error submit!");
+      return false;
+    }
+  });
 };
+
 const onReset = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.resetFields();
@@ -42,24 +51,63 @@ const onReset = (formEl: FormInstance | undefined) => {
           to hearing from you.
         </div>
         <el-form
+          id="feedback"
           size="large"
           ref="addMenuref"
           :label-position="labelPosition"
           :model="addMenu"
+          :require-asterisk-position="'right'"
           label-width="auto"
           style="max-width: auto"
         >
-          <el-form-item label="Nama" prop="nama">
+          <el-form-item
+            label="Nama"
+            prop="nama"
+            :rules="[
+              {
+                required: true,
+                message: 'Masukkan nama anda',
+                trigger: 'blur',
+              },
+            ]"
+          >
             <el-input v-model="addMenu.nama" />
           </el-form-item>
-          <el-form-item label="Email" prop="email">
+          <el-form-item
+            label="Email"
+            prop="email"
+            :rules="[
+              {
+                required: true,
+                message: 'Masukkan email address',
+                trigger: 'blur',
+              },
+              {
+                type: 'email',
+                message: 'Tolong masukan email address yang benar',
+                trigger: ['blur', 'change'],
+              },
+            ]"
+          >
             <el-input v-model="addMenu.email" />
           </el-form-item>
-          <el-form-item label="Pesan" prop="pesan">
+          <el-form-item
+            label="Pesan"
+            prop="pesan"
+            :rules="[
+              {
+                required: true,
+                message: 'Masukkan pesan yang ingin anda sampaikan',
+                trigger: 'blur',
+              },
+            ]"
+          >
             <el-input v-model="addMenu.pesan" type="textarea" />
           </el-form-item>
           <el-form-item>
-            <el-button @click="onSubmit" type="primary">Submit</el-button>
+            <el-button @click="onSubmit(addMenuref)" type="primary"
+              >Submit</el-button
+            >
             <el-button @click="onReset(addMenuref)">Reset</el-button>
           </el-form-item>
           <div class="flex justify-end">

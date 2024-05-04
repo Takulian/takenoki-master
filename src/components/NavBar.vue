@@ -12,10 +12,10 @@ import Feedback from "@/components/Feedback.vue";
           <img src="../assets/images/take no ki.png" class="h-20" alt="" />
         </RouterLink>
         <ul class="flex ml-4 text-xl items-center">
-          <RouterLink to="/" class="li" :to="home">Home</RouterLink>
-          <RouterLink to="/news" class="li" :to="news">News</RouterLink>
-          <RouterLink to="/menu" class="li" :to="menu">Menu</RouterLink>
-          <RouterLink to="/about" class="li" :to="about">About Us</RouterLink>
+          <RouterLink class="li" :to="{ name: 'home' }">Home</RouterLink>
+          <RouterLink class="li" :to="{ name: 'news' }">News</RouterLink>
+          <RouterLink class="li" :to="{ name: 'menu' }">Menu</RouterLink>
+          <RouterLink class="li" :to="{ name: 'about' }">About Us</RouterLink>
         </ul>
       </nav>
     </div>

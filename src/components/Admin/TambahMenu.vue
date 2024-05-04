@@ -86,6 +86,10 @@ const onReset = (formEl: FormInstance | undefined) => {
   box-shadow: 0px 5px 4px black;
 }
 
+.tombol:hover {
+  scale: 1.04;
+}
+
 .cw {
   color: var(--color-hitam);
   text-shadow: 0px 5px 7px rgba(0, 0, 0, 0.3);

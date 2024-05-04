@@ -29,6 +29,5 @@ const isi_tentang = Tentang;
     url("../assets/images/logo-nobg.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
 }
 </style>

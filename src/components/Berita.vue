@@ -8,7 +8,7 @@ const list_berita = isiBerita;
     class="pl-[10vh] tulisan text-5xl pt-10 pb-5 bg-[var(--color-sand)] flex items-center"
     style="color: var(--color-hitam)"
   >
-    <div class="w-[45%]">What's Happening</div>
+    <div class="w-[50%]">What's Happening</div>
     <div class="w-full rounded-lg bg-[var(--color-merah)] h-3 ml-3 mr-3"></div>
   </div>
   <div v-for="item in list_berita" :key="item" class="bg-[var(--color-sand)]">

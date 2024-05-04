@@ -25,11 +25,6 @@ const router = createRouter({
       component: () => import("../views/AboutView.vue"),
     },
     {
-      path: "/admin",
-      name: "dashboard",
-      component: () => import("../views/Admin_View/AdminMenu.vue"),
-    },
-    {
       path: "/admin/login",
       name: "loginDash",
       component: () => import("../views/Admin_View/LoginDash.vue"),
@@ -40,9 +35,9 @@ const router = createRouter({
       component: () => import("../views/Admin_View/AdminMenu.vue"),
     },
     {
-      path: "/admin/menu",
-      name: "menuDash",
-      component: () => import("../views/Admin_View/AdminMenu.vue"),
+      path: "/admin/news",
+      name: "newsDash",
+      component: () => import("../views/Admin_View/NewsMenu.vue"),
     },
   ],
 });

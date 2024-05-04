@@ -1,0 +1,24 @@
+#feedback .el-form-item__label {
+  color: var(--color-hitam);
+  font-weight: 700;
+  font-size: large;
+}
+
+#login .el-form-item__label {
+  color: var(--color-hitam);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+#login .el-button {
+  background-color: var(--color-hitam);
+  color: white;
+  border: none;
+  font-weight: 700;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#login .el-button:hover {
+  background-color: black;
+}

@@ -1,5 +1,7 @@
 <template>
-  <div class="besar flex justify-center text-9xl items-center">Menu</div>
+  <div class="besar h-screen flex justify-center text-9xl items-center">
+    Menu
+  </div>
 </template>
 
 <style scoped>
@@ -15,7 +17,6 @@
   background-size: cover;
   background-position: center;
   color: white;
-  height: 87vh;
   font-family: "poppins", sans-serif;
   font-weight: 700;
   text-shadow: 0px 8px 10px rgb(0, 0, 0, 0.7);
