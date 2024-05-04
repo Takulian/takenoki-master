@@ -4,7 +4,7 @@ import Feedback from "@/components/Feedback.vue";
 
 <template>
   <nav
-    class="grid grid-cols-2 bg-[var(--color-persian)] drop-shadow-[0_10px_20px_rgba(0,0,0,1)] w-screen"
+    class="grid grid-cols-2 bg-[var(--color-persian)] drop-shadow-[0_10px_20px_rgba(0,0,0,1)] w-screen terbang"
   >
     <div>
       <nav class="p-4 flex justify-normal">
@@ -47,5 +47,10 @@ img {
 
 div {
   font-weight: 700;
+}
+
+.terbang {
+  z-index: 97;
+  position: fixed;
 }
 </style>

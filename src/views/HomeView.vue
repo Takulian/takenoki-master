@@ -6,15 +6,10 @@ import Footer from "@/components/Footer.vue";
 </script>
 
 <template>
-  <NavBar class="udin" />
+  <NavBar />
   <Home />
   <Galeri />
   <Footer />
 </template>
 
-<style scoped>
-.udin {
-  z-index: 97;
-  position: fixed;
-}
-</style>
+<style scoped></style>
