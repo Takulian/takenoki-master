@@ -1,14 +1,25 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import type { FormProps } from "element-plus";
+import useAuth from "@/composable/auth.js";
+import type { FormProps, FormInstance } from "element-plus";
 
+const { login: handleLogin } = useAuth();
 const labelPosition = ref<FormProps["labelPosition"]>("top");
 const loginForm = reactive({
-  user: "",
+  username: "",
   password: "",
 });
-const onSubmit = () => {
-  console.log("submit");
+const loginFormRef = ref<FormInstance>();
+const onSubmit = (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
+  formEl.validate((valid) => {
+    if (valid) {
+      handleLogin(loginForm);
+    } else {
+      console.log("error submit!");
+      return false;
+    }
+  });
 };
 </script>
 
@@ -29,9 +40,10 @@ const onSubmit = () => {
             ref="loginFormRef"
             :model="loginForm"
             :label-position="labelPosition"
+            @keyup.enter="onSubmit(loginFormRef)"
           >
             <el-form-item label="Username">
-              <el-input v-model="loginForm.user" />
+              <el-input v-model="loginForm.username" />
             </el-form-item>
             <el-form-item label="Password">
               <el-input
@@ -41,7 +53,7 @@ const onSubmit = () => {
               />
             </el-form-item>
             <div class="flex justify-center">
-              <el-button @click="onSubmit">Login</el-button>
+              <el-button @click="onSubmit(loginFormRef)">Login</el-button>
             </div>
           </el-form>
         </div>

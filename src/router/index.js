@@ -30,6 +30,11 @@ const router = createRouter({
       component: () => import("../views/Admin_View/LoginDash.vue"),
     },
     {
+      path: "/admin/dashboard",
+      name: "dashboard",
+      component: () => import("../views/Admin_View/AdminDash.vue"),
+    },
+    {
       path: "/admin/menu",
       name: "menuDash",
       component: () => import("../views/Admin_View/AdminMenu.vue"),
@@ -38,6 +43,11 @@ const router = createRouter({
       path: "/admin/news",
       name: "newsDash",
       component: () => import("../views/Admin_View/NewsMenu.vue"),
+    },
+    {
+      path: "/admin/feedback",
+      name: "feedDash",
+      component: () => import("../views/Admin_View/FeedDash.vue"),
     },
   ],
 });
