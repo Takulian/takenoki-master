@@ -31,7 +31,7 @@ const onSubmit = (formEl: FormInstance | undefined) => {
       <div class="flex justify-center pb-5">
         <img src="@/assets/images/logo-nobg.png" alt="" class="w-[27vh]" />
       </div>
-      <div class="w-[370px] bg-[var(--color-sand)] rounded-xl pt-4">
+      <div class="w-[370px] bg-[var(--color-sand)] rounded-xl pt-4 shadow">
         <div class="flex justify-center pt-3 text-2xl tulisan">Admin Login</div>
         <div class="p-6" id="label">
           <el-form
@@ -67,5 +67,9 @@ const onSubmit = (formEl: FormInstance | undefined) => {
   font-family: "poppins", sans-serif;
   font-weight: 700;
   color: var(--color-hitam);
+}
+
+.shadow {
+  box-shadow: 8px 8px 7px rgba(0, 0, 0, 0.2);
 }
 </style>
