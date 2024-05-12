@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed, ref, onMounted } from "vue";
-import type { TableInstance } from "element-plus";
 import useMenu from "@/composable/menu";
 import Menu from "../Menu.vue";
 
@@ -27,10 +26,6 @@ const filter_list_makanan = computed(() =>
   )
 );
 
-const previewImage = (index: number, row: Menu) => {
-  console.log(index, row.gambar);
-  const gambar = row.gambar;
-};
 const handleEdit = (index: number, row: Menu) => {
   console.log(index, row);
 };
@@ -55,11 +50,8 @@ onMounted(() => {
     <el-table-column prop="short_desc" label="Deskripsi" width="250" />
     <el-table-column label="Gambar">
       <template #default="scope">
-        <!-- <img :src="scope.row.gambar" /> -->
-        <el-button
-          size="default"
-          @click="previewImage(scope.$index, scope.row), (open = true)"
-        >
+        <img :src="scope.row.gambar" />
+        <!-- <el-button size="default" @click="open = true">
           Lihat Gambar
         </el-button>
         <Teleport to="body">
@@ -74,7 +66,7 @@ onMounted(() => {
               </div>
             </div>
           </div>
-        </Teleport>
+        </Teleport> -->
       </template>
     </el-table-column>
     <el-table-column align="right">

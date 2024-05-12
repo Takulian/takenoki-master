@@ -1,3 +1,7 @@
+<script setup>
+import coba from "./coba.vue";
+</script>
+
 <template>
   <div class="bg-[var(--color-merah)] h-screen w-[350px]">
     <div
