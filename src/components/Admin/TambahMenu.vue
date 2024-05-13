@@ -5,7 +5,6 @@ import type { FormProps, FormInstance, ElNotification } from "element-plus";
 
 const open = ref(false);
 
-const labelPosition = ref<FormProps["labelPosition"]>("top");
 const addMenuref = ref<FormInstance>();
 const addMenu = reactive({
   nama_menu: "",
@@ -48,7 +47,7 @@ const onSubmit = (formEl: FormInstance | undefined) => {
       if (addMenu.gambar === "") {
         ElNotification({
           title: "Error",
-          message: "This is an error message",
+          message: "Gambar masih belum diisi",
           type: "error",
         });
       } else {
@@ -76,10 +75,10 @@ const { postMenu: tambahMenu } = useMenu();
         <el-form
           size="large"
           ref="addMenuref"
-          :label-position="labelPosition"
+          label-position="top"
           :model="addMenu"
           label-width="auto"
-          :require-asterisk-position="'right'"
+          require-asterisk-position="right"
         >
           <div class="grid grid-cols-2 gap-6">
             <div class="flex flex-col">
