@@ -3,7 +3,6 @@ import SideBar from "@/components/Admin/SideBar.vue";
 import Header from "@/components/Admin/Header.vue";
 import TableMenu from "@/components/Admin/TableMenu.vue";
 import TambahMenu from "@/components/Admin/TambahMenu.vue";
-import coba from "@/components/Admin/coba.vue";
 </script>
 
 <template>
