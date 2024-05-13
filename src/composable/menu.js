@@ -20,6 +20,7 @@ const useMenu = () => {
     try {
       const res = await axios.post(`/menu/modify`, payload);
       console.log(await res.data);
+      window.location.href = "/admin/menu";
     } catch (error) {
       console.log(error);
     }
