@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import useMenu from "@/composable/menu";
-import type { FormProps, FormInstance, ElNotification } from "element-plus";
+import type { FormInstance, ElNotification } from "element-plus";
 
 const open = ref(false);
 
 const addMenuref = ref<FormInstance>();
 const addMenu = reactive({
-  nama_menu: "",
+  nama: "",
   short_desc: "",
   harga: "",
   category: "",
@@ -114,7 +114,7 @@ const { postMenu: tambahMenu } = useMenu();
             <div>
               <el-form-item
                 label="Nama"
-                prop="nama_menu"
+                prop="nama"
                 :rules="[
                   {
                     required: true,
@@ -123,7 +123,7 @@ const { postMenu: tambahMenu } = useMenu();
                   },
                 ]"
               >
-                <el-input v-model="addMenu.nama_menu" placeholder="Nama menu" />
+                <el-input v-model="addMenu.nama" placeholder="Nama menu" />
               </el-form-item>
               <el-form-item
                 label="Kategori"

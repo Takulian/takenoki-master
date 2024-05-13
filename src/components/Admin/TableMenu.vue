@@ -12,7 +12,7 @@ const open = ref(false);
 const list_makanan: Menu[] = menus.value;
 
 interface Menu {
-  nama_menu: String;
+  nama: String;
   category: String;
   harga: String;
   short_desc: String;
@@ -24,13 +24,10 @@ const filter_list_makanan = computed(() =>
   menus.value.filter(
     (data) =>
       !search.value ||
-      data.nama_menu.toLowerCase().includes(search.value.toLowerCase())
+      data.nama.toLowerCase().includes(search.value.toLowerCase())
   )
 );
 
-const handleEdit = (index: number, row: Menu) => {
-  console.log(index, row);
-};
 const handleDelete = (index: number, row: Menu) => {
   console.log(index, row);
 };
@@ -46,7 +43,7 @@ onMounted(() => {
     style="width: 95%; border-radius: 10px; height: 100%"
     height="100%"
   >
-    <el-table-column prop="nama_menu" label="Nama" width="200" />
+    <el-table-column prop="nama" label="Nama" width="200" />
     <el-table-column prop="category" label="Kategori" width="100" />
     <el-table-column prop="harga" label="Harga" width="100" />
     <el-table-column prop="short_desc" label="Deskripsi" width="250" />

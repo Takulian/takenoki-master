@@ -11,7 +11,7 @@ const item = defineProps(["gambar"]);
     <div v-if="open" class="modal">
       <div class="bg-[var(--color-sand)] p-3 rounded-md">
         <div class="flex justify-between pb-3">
-          <div>{{ item.gambar.nama_menu }} Preview</div>
+          <div>{{ item.gambar.nama }} Preview</div>
           <el-button @click="open = false" type="danger">X</el-button>
         </div>
         <div class="flex justify-center">
