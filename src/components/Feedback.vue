@@ -1,22 +1,24 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import type { FormProps, FormInstance } from "element-plus";
+import useFeedback from "@/composable/feedback";
 
 const open = ref(false);
 
+const { postFeedback } = useFeedback();
 const labelPosition = ref<FormProps["labelPosition"]>("top");
-const addMenuref = ref<FormInstance>();
-const addMenu = reactive({
-  nama: "",
+const addFeedbackref = ref<FormInstance>();
+const addFeedback = reactive({
   email: "",
-  pesan: "",
+  message: "",
+  date: new Date(),
 });
 
 const onSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.validate((valid) => {
     if (valid) {
-      console.log("submit!");
+      postFeedback(addFeedback);
     } else {
       console.log("error submit!");
       return false;
@@ -53,26 +55,13 @@ const onReset = (formEl: FormInstance | undefined) => {
         <el-form
           id="feedback"
           size="large"
-          ref="addMenuref"
+          ref="addFeedbackref"
           :label-position="labelPosition"
-          :model="addMenu"
+          :model="addFeedback"
           :require-asterisk-position="'right'"
           label-width="auto"
           style="max-width: auto"
         >
-          <el-form-item
-            label="Nama"
-            prop="nama"
-            :rules="[
-              {
-                required: true,
-                message: 'Masukkan nama anda',
-                trigger: 'blur',
-              },
-            ]"
-          >
-            <el-input v-model="addMenu.nama" />
-          </el-form-item>
           <el-form-item
             label="Email"
             prop="email"
@@ -85,15 +74,15 @@ const onReset = (formEl: FormInstance | undefined) => {
               {
                 type: 'email',
                 message: 'Tolong masukan email address yang benar',
-                trigger: ['blur', 'change'],
+                trigger: ['blur'],
               },
             ]"
           >
-            <el-input v-model="addMenu.email" />
+            <el-input v-model="addFeedback.email" />
           </el-form-item>
           <el-form-item
             label="Pesan"
-            prop="pesan"
+            prop="message"
             :rules="[
               {
                 required: true,
@@ -102,17 +91,17 @@ const onReset = (formEl: FormInstance | undefined) => {
               },
             ]"
           >
-            <el-input v-model="addMenu.pesan" type="textarea" />
+            <el-input v-model="addFeedback.message" type="textarea" />
           </el-form-item>
           <el-form-item>
-            <el-button @click="onSubmit(addMenuref)" type="primary"
+            <el-button @click="onSubmit(addFeedbackref)" type="primary"
               >Submit</el-button
             >
-            <el-button @click="onReset(addMenuref)">Reset</el-button>
+            <el-button @click="onReset(addFeedbackref)">Reset</el-button>
           </el-form-item>
           <div class="flex justify-end">
             <el-button
-              @click="(open = false), onReset(addMenuref)"
+              @click="(open = false), onReset(addFeedbackref)"
               type="danger"
               >Close</el-button
             >
