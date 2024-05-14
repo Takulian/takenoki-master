@@ -1,5 +1,16 @@
-<script setup>
-import coba from "./coba.vue";
+<script lang="ts" setup>
+import { onMounted } from "vue";
+import useAuth from "@/composable/auth";
+
+const { logout, checkDashboard } = useAuth();
+
+const onLogout = () => {
+  logout();
+};
+
+onMounted(() => {
+  checkDashboard();
+});
 </script>
 
 <template>
@@ -47,10 +58,26 @@ import coba from "./coba.vue";
             Feedback</RouterLink
           >
         </div>
+        <div class="py-2">
+          <RouterLink
+            class="li py-2 pl-3 flex rounded-md"
+            :to="{ name: 'aboutDash' }"
+          >
+            <i class="fa-solid pr-2 pl-2 flex items-center fa-circle-info"></i>
+            About</RouterLink
+          >
+        </div>
       </nav>
-      <div class="flex items-end h-max">
-        <button>Logout</button>
-      </div>
+      <nav class="p-6 tulisan">
+        Account Center
+        <button
+          @click="onLogout"
+          class="tombol px-3 py-2 mt-2 flex rounded-md bg-[var(--color-hitam)] text-white items-center w-full"
+        >
+          <i class="fa-solid fa-right-from-bracket px-2"></i>
+          Logout
+        </button>
+      </nav>
     </div>
   </div>
 </template>
@@ -62,17 +89,21 @@ import coba from "./coba.vue";
   color: white;
   transition: all 0.4s;
 }
-
 .li:hover {
   background-color: rgba(193, 140, 93, 0.7);
   transition: all 0.4s;
 }
-
 .li {
   transition: all 0.4s;
 }
-
 .tulisan {
   color: var(--color-hitam);
+}
+.tombol {
+  transition: all 0.2s;
+}
+.tombol:hover {
+  scale: 1.02;
+  transition: all 0.2s;
 }
 </style>

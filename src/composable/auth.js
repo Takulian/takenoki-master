@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import { useCookies } from "@vueuse/integrations/useCookies";
 import router from "@/router";
+import Swal from "sweetalert2";
 
 import dayjs from "dayjs";
 import useAxios from "./axios";
@@ -24,8 +25,27 @@ const useAuth = () => {
     }
   };
 
+  const logout = () => {
+    try {
+      cookies.remove("session-admin", { path: "/admin" });
+      window.location.href = "/admin/login";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const checkDashboard = async () => {
+    try {
+      const res = await axiosClient.get(`/feedback/unread`, config);
+    } catch (error) {
+      window.location.href = "/admin/login";
+    }
+  };
+
   return {
     login,
+    logout,
+    checkDashboard,
   };
 };
 
