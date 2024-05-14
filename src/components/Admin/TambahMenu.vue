@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import useMenu from "@/composable/menu";
-import type { FormInstance, ElNotification } from "element-plus";
+import Swal from "sweetalert2";
+import type { FormInstance } from "element-plus";
 
 const open = ref(false);
 
@@ -45,10 +46,16 @@ const onSubmit = (formEl: FormInstance | undefined) => {
   formEl.validate((valid) => {
     if (valid) {
       if (addMenu.gambar === "") {
-        ElNotification({
-          title: "Error",
-          message: "Gambar masih belum diisi",
-          type: "error",
+        Swal.fire({
+          toast: true,
+          icon: "error",
+          title: "Gambar belum diisi",
+          color: "#fff",
+          iconColor: "#FF5050",
+          timer: 3000,
+          showConfirmButton: false,
+          position: "top-end",
+          background: "var(--color-persian)",
         });
       } else {
         tambahMenu(addMenu);
@@ -140,14 +147,18 @@ const { postMenu: tambahMenu } = useMenu();
                   v-model="addMenu.category"
                   placeholder="Pilih kategori"
                 >
-                  <el-option label="test1" value="t1" />
-                  <el-option label="test2" value="t2" />
-                  <el-option label="test3" value="t3" />
-                  <el-option label="test4" value="t4" />
-                  <el-option label="test5" value="t5" />
-                  <el-option label="test6" value="t6" />
-                  <el-option label="test7" value="t7" />
-                  <el-option label="test8" value="t8" />
+                  <el-option label="AlaCarte" value="AlaCarte" />
+                  <el-option label="Apetizer" value="Apetizer" />
+                  <el-option label="Donburi" value="Donburi" />
+                  <el-option label="Gohan" value="Gohan" />
+                  <el-option label="Minuman" value="Minuman" />
+                  <el-option label="Ramen" value="Ramen" />
+                  <el-option label="Special Agemono" value="Special Agemono" />
+                  <el-option label="Special Donburi" value="Special Donburi" />
+                  <el-option label="Special Ramen" value="Special Ramen" />
+                  <el-option label="Special Udon" value="Special Udon" />
+                  <el-option label="Topping" value="Topping" />
+                  <el-option label="Udon" value="Udon" />
                 </el-select>
               </el-form-item>
               <el-form-item

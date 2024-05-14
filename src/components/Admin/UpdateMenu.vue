@@ -1,14 +1,16 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import useMenu from "@/composable/menu";
-import type { FormProps, FormInstance, ElNotification } from "element-plus";
+import Swal from "sweetalert2";
+import type { FormInstance } from "element-plus";
 
 const open = ref(false);
 const menu = defineProps(["data"]);
+const { updMenu } = useMenu();
 
-const addMenuref = ref<FormInstance>();
-const addMenu = reactive({
-  nama_menu: menu.data.nama_menu,
+const updateMenuref = ref<FormInstance>();
+const updateMenu = reactive({
+  nama: menu.data.nama,
   short_desc: menu.data.short_desc,
   harga: menu.data.harga,
   category: menu.data.category,
@@ -24,12 +26,12 @@ const convert = (file) => {
   if (file) {
     const reader = new FileReader();
     reader.readAsDataURL(file.target.files[0]);
-    reader.onload = () => (addMenu.gambar = reader.result);
+    reader.onload = () => (updateMenu.gambar = reader.result);
   } else return;
 };
 
 const resetImage = () => {
-  addMenu.gambar = menu.data.gambar;
+  updateMenu.gambar = menu.data.gambar;
 };
 
 const checkAngka = (rule: any, value: any, callback: any) => {
@@ -46,14 +48,20 @@ const onSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.validate((valid) => {
     if (valid) {
-      if (addMenu.gambar === "") {
-        ElNotification({
-          title: "Error",
-          message: "Gambar masih belum diisi",
-          type: "error",
+      if (updateMenu.gambar === "") {
+        Swal.fire({
+          toast: true,
+          icon: "error",
+          title: "Gambar belum diisi",
+          color: "#fff",
+          iconColor: "#FF5050",
+          timer: 3000,
+          showConfirmButton: false,
+          position: "top-end",
+          background: "var(--color-persian)",
         });
       } else {
-        console.log(addMenu);
+        updMenu(menu.data.uuid, updateMenu);
       }
     } else {
       console.log("error submit!");
@@ -61,8 +69,6 @@ const onSubmit = (formEl: FormInstance | undefined) => {
     }
   });
 };
-
-const { postMenu: tambahMenu } = useMenu();
 </script>
 
 <template>
@@ -74,9 +80,9 @@ const { postMenu: tambahMenu } = useMenu();
         <div class="text-4xl text-center cw font-bold pb-5">Edit Menu</div>
         <el-form
           size="large"
-          ref="addMenuref"
+          ref="updateMenuref"
           label-position="top"
-          :model="addMenu"
+          :model="updateMenu"
           label-width="auto"
           require-asterisk-position="right"
         >
@@ -88,9 +94,9 @@ const { postMenu: tambahMenu } = useMenu();
                   for="file"
                   class="flex justify-center h-full cursor-pointer items-center"
                 >
-                  <div v-if="addMenu.gambar">
+                  <div v-if="updateMenu.gambar">
                     <img
-                      :src="addMenu.gambar"
+                      :src="updateMenu.gambar"
                       alt=""
                       class="rounded-md object-cover max-h-56"
                     />
@@ -114,7 +120,7 @@ const { postMenu: tambahMenu } = useMenu();
             <div>
               <el-form-item
                 label="Nama"
-                prop="nama_menu"
+                prop="nama"
                 :rules="[
                   {
                     required: true,
@@ -123,7 +129,7 @@ const { postMenu: tambahMenu } = useMenu();
                   },
                 ]"
               >
-                <el-input v-model="addMenu.nama_menu" placeholder="Nama menu" />
+                <el-input v-model="updateMenu.nama" placeholder="Nama menu" />
               </el-form-item>
               <el-form-item
                 label="Kategori"
@@ -137,17 +143,21 @@ const { postMenu: tambahMenu } = useMenu();
                 ]"
               >
                 <el-select
-                  v-model="addMenu.category"
+                  v-model="updateMenu.category"
                   placeholder="Pilih kategori"
                 >
-                  <el-option label="test1" value="t1" />
-                  <el-option label="test2" value="t2" />
-                  <el-option label="test3" value="t3" />
-                  <el-option label="test4" value="t4" />
-                  <el-option label="test5" value="t5" />
-                  <el-option label="test6" value="t6" />
-                  <el-option label="test7" value="t7" />
-                  <el-option label="test8" value="t8" />
+                  <el-option label="AlaCarte" value="AlaCarte" />
+                  <el-option label="Apetizer" value="Apetizer" />
+                  <el-option label="Donburi" value="Donburi" />
+                  <el-option label="Gohan" value="Gohan" />
+                  <el-option label="Minuman" value="Minuman" />
+                  <el-option label="Ramen" value="Ramen" />
+                  <el-option label="Special Agemono" value="Special Agemono" />
+                  <el-option label="Special Donburi" value="Special Donburi" />
+                  <el-option label="Special Ramen" value="Special Ramen" />
+                  <el-option label="Special Udon" value="Special Udon" />
+                  <el-option label="Topping" value="Topping" />
+                  <el-option label="Udon" value="Udon" />
                 </el-select>
               </el-form-item>
               <el-form-item
@@ -162,7 +172,7 @@ const { postMenu: tambahMenu } = useMenu();
                 ]"
               >
                 <el-input
-                  v-model.number="addMenu.harga"
+                  v-model.number="updateMenu.harga"
                   placeholder="Harga menu"
                 />
               </el-form-item>
@@ -180,23 +190,23 @@ const { postMenu: tambahMenu } = useMenu();
             ]"
           >
             <el-input
-              v-model="addMenu.short_desc"
+              v-model="updateMenu.short_desc"
               :rows="3"
               type="textarea"
               placeholder="Deskripsi tentang menu"
             />
           </el-form-item>
           <el-form-item>
-            <el-button @click="onSubmit(addMenuref)" type="primary"
+            <el-button @click="onSubmit(updateMenuref)" type="primary"
               >Submit</el-button
             >
-            <el-button @click="onReset(addMenuref), resetImage()"
+            <el-button @click="onReset(updateMenuref), resetImage()"
               >Reset</el-button
             >
           </el-form-item>
           <div class="flex justify-end">
             <el-button
-              @click="(open = false), onReset(addMenuref), resetImage()"
+              @click="(open = false), onReset(updateMenuref), resetImage()"
               type="danger"
               >Close</el-button
             >

@@ -4,14 +4,16 @@ import useMenu from "@/composable/menu";
 import Menu from "../Menu.vue";
 import GambarMenu from "./GambarMenu.vue";
 import UpdateMenu from "./UpdateMenu.vue";
+import Swal from "sweetalert2";
 
-const { menus, getMenu } = useMenu();
+const { menus, getMenu, delMenu } = useMenu();
 
 const open = ref(false);
 
 const list_makanan: Menu[] = menus.value;
 
 interface Menu {
+  uuid: String;
   nama: String;
   category: String;
   harga: String;
@@ -28,8 +30,23 @@ const filter_list_makanan = computed(() =>
   )
 );
 
-const handleDelete = (index: number, row: Menu) => {
-  console.log(index, row);
+const handleDelete = (row: Menu) => {
+  Swal.fire({
+    allowEnterKey: false,
+    title: "Apakah kamu yakin?",
+    text: "Data yang telah dihapus tidak bisa dikembalikan",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Ya, hapus",
+    background: "var(--color-persian)",
+    color: "#fff",
+    iconColor: "#FF5050",
+    confirmButtonColor: "#FF5050",
+  }).then((hasil) => {
+    if (hasil.isConfirmed) {
+      delMenu(row.uuid);
+    }
+  });
 };
 
 onMounted(() => {
@@ -61,7 +78,7 @@ onMounted(() => {
         <el-button
           size="default"
           type="danger"
-          @click="handleDelete(scope.$index, scope.row)"
+          @click="handleDelete(scope.row)"
         >
           Delete
         </el-button>
