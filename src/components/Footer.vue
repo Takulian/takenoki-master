@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--color-hitam)]">
+  <div class="bg-[var(--color-hitam)] w-screen">
     <div class="text-white flex justify-center pt-8 text-3xl font-bold">
       Contact Us
     </div>

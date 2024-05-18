@@ -7,9 +7,8 @@
         class="pt-16 pr-16"
       />
     </div>
-    <div class="ml-5 mt-20 pt-[100px]">
+    <div class="ml-5 mt-36 pt-[100px]">
       <div class="mt-20 text-4xl">
-        Hi User,<br />
         Welcome to
         <span style="color: var(--color-merah)">Take no Ki!</span>
       </div>

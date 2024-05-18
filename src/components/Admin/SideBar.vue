@@ -58,15 +58,6 @@ onMounted(() => {
             Feedback</RouterLink
           >
         </div>
-        <div class="py-2">
-          <RouterLink
-            class="li py-2 pl-3 flex rounded-md"
-            :to="{ name: 'aboutDash' }"
-          >
-            <i class="fa-solid pr-2 pl-2 flex items-center fa-circle-info"></i>
-            About</RouterLink
-          >
-        </div>
       </nav>
       <nav class="p-6 tulisan">
         Account Center
