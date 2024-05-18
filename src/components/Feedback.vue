@@ -91,7 +91,11 @@ const onReset = (formEl: FormInstance | undefined) => {
               },
             ]"
           >
-            <el-input v-model="addFeedback.message" type="textarea" />
+            <el-input
+              v-model="addFeedback.message"
+              type="textarea"
+              :autosize="{ minRows: 4, maxRows: 4 }"
+            />
           </el-form-item>
           <el-form-item>
             <el-button @click="onSubmit(addFeedbackref)" type="primary"
