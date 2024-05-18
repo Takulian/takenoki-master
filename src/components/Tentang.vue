@@ -1,13 +1,26 @@
 <script setup>
-import Tentang from "@/data/tentang.json";
-const isi_tentang = Tentang;
+import { onMounted } from "vue";
+import useAbout from "@/composable/about";
+
+const { abouts, getAbout } = useAbout();
+
+onMounted(() => {
+  getAbout();
+});
 </script>
 
 <template>
   <div class="jancok">
-    <div class="flex justify-center tulisan text-8xl pt-10">OUR HISTORY</div>
-    <div v-for="item in isi_tentang" :key="item" class="p-12 pl-24 pr-24">
-      <p class="text-xl text-justify">{{ item.tentang }}</p>
+    <div class="flex justify-center tulisan text-8xl pt-10">
+      {{ abouts.aboutUs }}
+    </div>
+    <div class="p-12 pr-24 flex">
+      <img
+        :src="abouts.aus_image"
+        alt=""
+        class="min-h-fit max-w-72 object-cover rounded-lg mx-4"
+      />
+      <p class="text-xl text-justify">{{ abouts.aus_content }}</p>
     </div>
   </div>
 </template>
