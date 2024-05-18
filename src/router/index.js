@@ -42,17 +42,12 @@ const router = createRouter({
     {
       path: "/admin/news",
       name: "newsDash",
-      component: () => import("../views/Admin_View/NewsMenu.vue"),
+      component: () => import("../views/Admin_View/NewsDash.vue"),
     },
     {
       path: "/admin/feedback",
       name: "feedDash",
       component: () => import("../views/Admin_View/FeedDash.vue"),
-    },
-    {
-      path: "/admin/about",
-      name: "aboutDash",
-      component: () => import("../views/Admin_View/AboutDash.vue"),
     },
   ],
 });

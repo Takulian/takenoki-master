@@ -195,6 +195,7 @@ const { postMenu: tambahMenu } = useMenu();
               :rows="3"
               type="textarea"
               placeholder="Deskripsi tentang menu"
+              :autosize="{ minRows: 4, maxRows: 9 }"
             />
           </el-form-item>
           <el-form-item>
@@ -225,10 +226,12 @@ const { postMenu: tambahMenu } = useMenu();
   font-weight: 700;
   color: white;
   box-shadow: 0px 5px 4px black;
+  transition: all 0.2s;
 }
 
 .tombol:hover {
   scale: 1.04;
+  transition: all 0.2s;
 }
 
 .cw {

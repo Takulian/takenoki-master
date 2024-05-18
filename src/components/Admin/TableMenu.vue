@@ -60,11 +60,11 @@ onMounted(() => {
     style="width: 95%; border-radius: 10px; height: 100%"
     height="100%"
   >
-    <el-table-column prop="nama" label="Nama" width="200" />
-    <el-table-column prop="category" label="Kategori" width="100" />
-    <el-table-column prop="harga" label="Harga" width="100" />
+    <el-table-column prop="nama" label="Nama" width="200" sortable />
+    <el-table-column prop="category" label="Kategori" width="110" sortable />
+    <el-table-column prop="harga" label="Harga" width="100" sortable />
     <el-table-column prop="short_desc" label="Deskripsi" width="250" />
-    <el-table-column label="Gambar">
+    <el-table-column label="Gambar" width="200">
       <template #default="scope">
         <GambarMenu :gambar="scope.row" />
       </template>

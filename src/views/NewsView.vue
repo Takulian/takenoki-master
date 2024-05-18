@@ -10,12 +10,8 @@ import Footer from "@/components/Footer.vue";
     <NavBar />
     <News />
     <Berita />
-    <Footer class="mundur" />
+    <Footer />
   </main>
 </template>
 
-<style scoped>
-.mundur {
-  margin: -1rem;
-}
-</style>
+<style scoped></style>

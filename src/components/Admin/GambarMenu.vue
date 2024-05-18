@@ -12,7 +12,9 @@ const item = defineProps(["gambar"]);
       <div class="bg-[var(--color-sand)] p-3 rounded-md">
         <div class="flex justify-between pb-3">
           <div class="flex items-center text-[--color-hitam]">
-            <span class="font-bold">{{ item.gambar.nama }}</span
+            <span class="font-bold text-[var(--color-merah)]">{{
+              item.gambar.nama
+            }}</span
             >&nbsp;Preview
           </div>
           <el-button @click="open = false" type="danger">X</el-button>
