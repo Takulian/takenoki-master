@@ -13,8 +13,8 @@ import Feedback from "@/components/Feedback.vue";
         </RouterLink>
         <ul class="flex ml-4 text-xl items-center">
           <RouterLink class="li" :to="{ name: 'home' }">Home</RouterLink>
-          <RouterLink class="li" :to="{ name: 'news' }">News</RouterLink>
           <RouterLink class="li" :to="{ name: 'menu' }">Menu</RouterLink>
+          <RouterLink class="li" :to="{ name: 'news' }">News</RouterLink>
           <RouterLink class="li" :to="{ name: 'about' }">About Us</RouterLink>
         </ul>
       </nav>
